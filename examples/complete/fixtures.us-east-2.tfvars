@@ -1,9 +1,12 @@
+#todo: local
+
 region    = "us-east-2"
 namespace = "eg"
 tenant    = "core"
 name      = "health-ec2-issue"
 stage     = "test"
 
+# todo: local
 sns_topic_allowed_aws_services_for_sns_published = ["events.amazonaws.com"]
 
 cloudwatch_event_rule_description = "This is event rule description."

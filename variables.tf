@@ -31,3 +31,17 @@ variable "cloudwatch_event_target_role_arn" {
   default     = null
 }
 
+variable "source_event_bus_name" {
+  type        = string
+  description = "Source Eventbus Name."
+  default     = null
+}
+
+variable "target_event_bus_name" {
+  type        = string
+  description = "Target Eventbus Name."
+  default     = null
+}
+
+
+

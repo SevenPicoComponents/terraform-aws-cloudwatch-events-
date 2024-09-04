@@ -11,5 +11,5 @@ module "cloudwatch_event" {
   cloudwatch_event_rule_description = var.cloudwatch_event_rule_description
   cloudwatch_event_rule_pattern     = var.cloudwatch_event_rule_pattern
   cloudwatch_event_target_arn       = module.sns.topic_arn
-  context = module.context.self
+  context                           = module.context.self
 }

@@ -19,11 +19,7 @@ locals {
     }
   }
 }
-module "sns" {
-  source  = "SevenPico/sns/aws"
-  version = "2.0.2"
-  context = module.context.self
-}
+
 
 module "cloudwatch_event" {
   source = "../../"

@@ -1,4 +1,7 @@
 
+locals {
+
+}
 module "sns" {
   source  = "SevenPico/sns/aws"
   version = "2.0.2"

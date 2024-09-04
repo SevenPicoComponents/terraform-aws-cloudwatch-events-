@@ -47,27 +47,7 @@ inputs = {
   dns_name_format     = local.dns_name_format
 
   # Module / Example Specific
-  sns_topic_allowed_aws_services_for_sns_published = ["events.amazonaws.com"]
-
-  cloudwatch_event_rule_description = "This is event rule description."
-  cloudwatch_event_rule_pattern = {
-    source = [
-      "aws.health"
-    ],
-    detail-type = [
-      "AWS Health Event"
-    ],
-    detail = {
-      service = [
-        "EC2"
-      ],
-      eventTypeCategory = [
-        "issue"
-      ]
-    }
-  }
-
-
+ 
 }
 
 remote_state {

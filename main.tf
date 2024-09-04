@@ -1,4 +1,4 @@
-module "rule_context" {
+module "eventbridge_context" {
   source  = "SevenPico/context/null"
   version = "2.0.0"
 
@@ -8,9 +8,9 @@ module "rule_context" {
 }
 
 resource "aws_cloudwatch_event_rule" "event_rule" {
-  count       = module.rule_context.enabled ? 1 : 0
-  name        = module.rule_context.id
-  description = var.cloudwatch_event_rule_description != "" ? var.cloudwatch_event_rule_description : module.rule_context.id_full
+  count       = module.eventbridge_context.enabled ? 1 : 0
+  name        = module.eventbridge_context.id
+  description = var.cloudwatch_event_rule_description != "" ? var.cloudwatch_event_rule_description : module.eventbridge_context.id_full
   event_bus_name = var.source_event_bus_name
   event_pattern = jsonencode(var.cloudwatch_event_rule_pattern)
 
@@ -18,7 +18,7 @@ resource "aws_cloudwatch_event_rule" "event_rule" {
 }
 
 resource "aws_cloudwatch_event_target" "event_target" {
-  count       = module.rule_context.enabled ? 1 : 0
+  count       = module.eventbridge_context.enabled ? 1 : 0
 
   rule      = try(aws_cloudwatch_event_rule.event_rule[0].name, "")
   target_id = var.cloudwatch_event_target_id

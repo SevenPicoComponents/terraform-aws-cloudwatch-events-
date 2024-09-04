@@ -3,8 +3,9 @@ module "eventbridge_context" {
   version = "2.0.0"
 
   id_length_limit = 64
-
   context = module.context.self
+  enabled = module.context.enabled
+  attributes = []
 }
 
 resource "aws_cloudwatch_event_rule" "event_rule" {

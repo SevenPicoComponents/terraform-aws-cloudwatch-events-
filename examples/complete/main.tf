@@ -1,24 +1,24 @@
-provider "aws" {
-  region = var.region
-}
 
-module "sns" {
-  source  = "cloudposse/sns-topic/aws"
-  version = "0.11.0"
-
-  subscribers = var.sns_topic_subscribers
-
-  allowed_aws_services_for_sns_published = var.sns_topic_allowed_aws_services_for_sns_published
-
-  context = module.this.context
+module "example_context" {
+  source     = "registry.terraform.io/SevenPico/context/null"
+  version    = "2.0.0"
+  context    = module.context.self
+  enabled    = module.context.enabled
+  attributes = []
 }
 
 module "cloudwatch_event" {
-  source = "../.."
+  source  = "../../"
+  context = module.example_context.self
 
-  cloudwatch_event_rule_description = var.cloudwatch_event_rule_description
-  cloudwatch_event_rule_pattern     = var.cloudwatch_event_rule_pattern
-  cloudwatch_event_target_arn       = module.sns.sns_topic.arn
-
-  context = module.this.context
+  cloudwatch_event_rule_pattern = {
+    source      = ["aws.health"],
+    detail-type = ["AWS Health Event"],
+    detail = {
+      service           = ["EC2"],
+      eventTypeCategory = ["issue"]
+    }
+  }
+  cloudwatch_event_rule_description = "This is event rule description."
+  cloudwatch_event_target_arn       = module.sns.topic_arn
 }

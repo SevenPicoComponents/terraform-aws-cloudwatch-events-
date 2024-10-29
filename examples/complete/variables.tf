@@ -1,8 +1,3 @@
-variable "region" {
-  type        = string
-  description = "AWS region"
-}
-
 variable "sns_topic_allowed_aws_services_for_sns_published" {
   type        = list(string)
   description = "AWS services that will have permission to publish to SNS topic. Used when no external json policy is used."
@@ -22,13 +17,4 @@ variable "sns_topic_subscribers" {
   default     = {}
 }
 
-variable "cloudwatch_event_rule_description" {
-  type        = string
-  description = "The description of the rule."
-  default     = ""
-}
-
-variable "cloudwatch_event_rule_pattern" {
-  description = "Event pattern described a HCL map which will be encoded as JSON with jsonencode function. See full documentation of CloudWatch Events and Event Patterns for details. http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CloudWatchEventsandEventPatterns.html"
-}
 
